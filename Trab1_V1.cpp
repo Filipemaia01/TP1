@@ -712,13 +712,13 @@ private:
 public:
     Testador(){}
     void manager(){
-        int option = 1;
+        int Option = 1;
         int bom = 0;
         std::string TestStr;
         Validador Verificador;
 
-        while(option != 0){
-            option = 1;
+        while(Option != 0){
+            Option = 1;
             std::cout << "\nSelecione a funcao do validador a ser testado.\n";
             std::cout << "\n01 - Codigo do jogo.";
             std::cout << "\n02 - Codigo do ingresso.";
@@ -737,14 +737,14 @@ public:
             std::cout << "\n15 - Codigo de seguranca.";
             std::cout << "\n16 - Data de validade.";
             std::cout << "\n00 - Sair.\n\n\n";
-            std::cin >> option;
-            if(option != 0){
+            std::cin >> Option;
+            if(Option != 0){
                 std::cout << "\n\nDigite a std::string a ser usada para o teste.\n";
                 std::cin.ignore();
                 getline(std::cin,TestStr);
             }
             //getline(std::cin,TestStr);
-            switch(option){
+            switch(Option){
                 case(1):
                     //std::cout << " - Codigo_Do_Jogo.\n";
                     bom = Verificador.Codigo_Do_Jogo(TestStr);
@@ -810,7 +810,7 @@ public:
                     bom = Verificador.Data_De_Validade_Do_Cartao(TestStr);
                     break;
             }
-            if(option != 0){
+            if(Option != 0){
                 if(bom == 0){
                     std::cout << "\nEntrada Invalida.\n";
                 }else{
@@ -1113,17 +1113,41 @@ private:
 public:
     Menu(){}
 
-    Menu_Usuario(){
-        /*Nada*/
+    Menu_Usuario(std::vector<Jogo> Lista_Games, std::vector<Partida> Lista_Matches){
+        /*asdw*/
     }
-    Menu_Admin(){
-        /*Nada*/
+    Menu_Admin(std::vector<Jogo> Lista_Games, std::vector<Partida> Lista_Matches){
+        int Seletor = 1;
+        Jogo Game;
+        Partida Match;
+
+
+
+        while(Seletor != 0){
+            std::cout << "\nSelecione uma opcao.";
+            std::cout << "\n1 - Cadastrar Jogo.";
+            std::cout << "\n2 - Cadastrar Partida.";
+            std::cout << "\n0 - Sair.\n";
+            std::cin >> Seletor;
+            switch(Seletor){
+                case(1):
+                    Game.Create();
+                    Lista_Games.push_back(Game);
+                    break;
+                case(2):
+                    Match.Create();
+                    Lista_Matches.push_back(Match);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 };
 
 int main(){
     int i = 0;
-    int seletor = 1;
+    int Seletor = 1;
     int* Indice_Lista;
     std::vector<Usuario> Lista_Usuarios;
     std::vector<Administrador> Lista_Admin;
@@ -1139,13 +1163,13 @@ int main(){
 
     Indice_Lista = (int*)malloc(sizeof(int));
     if(Modo_Teste_Validador_Prog){
-        while(seletor != 0){
+        while(Seletor != 0){
             std::cout << "\nSelecione uma opcao.";
             std::cout << "\n1 - Teste manual das entradas.";
             std::cout << "\n2 - Teste automatico das entradas.";
             std::cout << "\n0 - Sair.\n";
-            std::cin >> seletor;
-            switch(seletor){
+            std::cin >> Seletor;
+            switch(Seletor){
                 case(1):
                     Tester.manager();
                     break;
@@ -1157,15 +1181,15 @@ int main(){
             }
         }
     }else{
-        while(seletor != 0){
+        while(Seletor != 0){
             std::cout << "\nSelecione uma opcao.";
             std::cout << "\n1 - Visualizar Jogos.";
             std::cout << "\n2 - Cadastrar.";
             std::cout << "\n3 - Cadastrar Administrador.";
             std::cout << "\n4 - Login.";
             std::cout << "\n0 - Sair.\n";
-            std::cin >> seletor;
-            switch(seletor){
+            std::cin >> Seletor;
+            switch(Seletor){
                 case(1):
                     break;
                 case(2):
